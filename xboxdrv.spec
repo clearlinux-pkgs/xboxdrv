@@ -7,13 +7,15 @@
 #
 Name     : xboxdrv
 Version  : 0.8.11
-Release  : 1
+Release  : 2
 URL      : https://github.com/xiota/xboxdrv/archive/v0.8.11/xboxdrv-0.8.11.tar.gz
 Source0  : https://github.com/xiota/xboxdrv/archive/v0.8.11/xboxdrv-0.8.11.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
+Requires: xboxdrv-bin = %{version}-%{release}
 Requires: xboxdrv-license = %{version}-%{release}
+Requires: xboxdrv-man = %{version}-%{release}
 BuildRequires : buildreq-scons
 BuildRequires : libX11-dev
 BuildRequires : pkgconfig(dbus-glib-1)
@@ -31,12 +33,29 @@ BuildRequires : pkgconfig(libusb-1.0)
 runxboxdrv was written by Mike Rans <rans@email.com>, some info can be
 found at:
 
+%package bin
+Summary: bin components for the xboxdrv package.
+Group: Binaries
+Requires: xboxdrv-license = %{version}-%{release}
+
+%description bin
+bin components for the xboxdrv package.
+
+
 %package license
 Summary: license components for the xboxdrv package.
 Group: Default
 
 %description license
 license components for the xboxdrv package.
+
+
+%package man
+Summary: man components for the xboxdrv package.
+Group: Default
+
+%description man
+man components for the xboxdrv package.
 
 
 %prep
@@ -48,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1724955070
+export SOURCE_DATE_EPOCH=1724955895
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,17 +101,26 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1724955070
+export SOURCE_DATE_EPOCH=1724955895
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xboxdrv
 cp %{_builddir}/xboxdrv-%{version}/COPYING %{buildroot}/usr/share/package-licenses/xboxdrv/842745cb706f8f2126506f544492f7a80dbe29b3 || :
 export GOAMD64=v2
 GOAMD64=v2
-%make_install
+%make_install PREFIX=/usr
 
 %files
 %defattr(-,root,root,-)
 
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/xboxdrv
+/usr/bin/xboxdrvctl
+
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/xboxdrv/842745cb706f8f2126506f544492f7a80dbe29b3
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/xboxdrv.1
