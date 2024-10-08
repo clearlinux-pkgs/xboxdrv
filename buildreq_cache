@@ -1,6 +1,8 @@
-0.8.11
+0.8.12
+glib-dev
 pkgconfig(dbus-glib-1)
 pkgconfig(glib-2.0)
 pkgconfig(gthread-2.0)
 pkgconfig(libudev)
 pkgconfig(libusb-1.0)
+systemd-dev
