@@ -6,10 +6,10 @@
 # autospec commit: f35655a
 #
 Name     : xboxdrv
-Version  : 0.8.12
-Release  : 3
-URL      : https://github.com/xiota/xboxdrv/archive/v0.8.12/xboxdrv-0.8.12.tar.gz
-Source0  : https://github.com/xiota/xboxdrv/archive/v0.8.12/xboxdrv-0.8.12.tar.gz
+Version  : 0.8.13
+Release  : 4
+URL      : https://github.com/xiota/xboxdrv/archive/v0.8.13/xboxdrv-0.8.13.tar.gz
+Source0  : https://github.com/xiota/xboxdrv/archive/v0.8.13/xboxdrv-0.8.13.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
@@ -61,15 +61,15 @@ man components for the xboxdrv package.
 
 
 %prep
-%setup -q -n xboxdrv-0.8.12
-cd %{_builddir}/xboxdrv-0.8.12
+%setup -q -n xboxdrv-0.8.13
+cd %{_builddir}/xboxdrv-0.8.13
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1728426938
+export SOURCE_DATE_EPOCH=1728570562
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -103,7 +103,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1728426938
+export SOURCE_DATE_EPOCH=1728570562
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xboxdrv
 cp %{_builddir}/xboxdrv-%{version}/COPYING %{buildroot}/usr/share/package-licenses/xboxdrv/842745cb706f8f2126506f544492f7a80dbe29b3 || :
